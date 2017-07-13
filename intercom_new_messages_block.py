@@ -7,10 +7,15 @@ import requests
 
 
 class BuildSignal(RESTHandler):
+
     def __init__(self, endpoint, notify_signals, logger):
         super().__init__('/'+endpoint)
         self.notify_signals = notify_signals
         self.logger = logger
+
+    def before_handler(self, req, rsp):
+        # Overridden in order to skip the authentication in the framework
+        return
 
     def on_post(self, req, rsp):
         body = req.get_body()
