@@ -1,28 +1,21 @@
 {
-  "namespace/BlockName": {
-    "Version": "1.0.0",
-    "Description": "Description of the block.",
-    "Output": "Description of block output(s).",
-    "Input": "Description of block input(s).",
+  "nio/IntercomNewMessages": {
+    "Version": "0.1.0",
+    "Description": "Publishes a signal for each new conversation created in Intercom. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It also creates a webhook in Intercom that is configured to send to your callback url. When the block stops, it delete the webhook from Intercom.",
+    "Output": "https://developers.intercom.com/v2.0/reference#notification-model",
+    "Input": "None",
     "Dependencies": [
-      "<List of required dependencies.>"
+      "requests"
     ],
-    "Commands": {
-      "<command1>": {
-        "description": "Required description of the command",
-        "type": "Optional type and other metadata with any key."
-      },
-      "<command2>": {
-        "description": "Required description of the command"
-      }
-    },
     "Properties": {
-      "<property1>": {
-        "description": "Required description of the property"
+      "callback_url": {
+        "description": "Your publicly accessible url that Intercom can POST notifications to."
       },
-      "<property2>": {
-        "default": "Optional metadata with any key.",
-        "description": "Required description of the property"
+      "access_token": {
+        "description": "Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom."
+      }, 
+      "web_server": {
+       "description": "Host, Port and Endpoint to launch your webserver where Intercom will POST notifications to."
       }
     }
   }
