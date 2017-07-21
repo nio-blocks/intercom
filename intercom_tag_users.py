@@ -7,23 +7,27 @@ import requests
 
 class IntercomTagUsers(Block):
 
-    # Need: tag name, user email/id
     access_token = StringProperty(
         title="Access Token", default="[[INTERCOM_ACCESS_TOKEN]]")
     tag_name = StringProperty(title="Name of Tag", default="CrankyCustomer")
     email = StringProperty(title="User Email", default="{{ $user }}")
-    user_id = StringProperty(title="User ID", default="{{ $user_id }}")
+    user_id = StringProperty(
+        title="User ID", default="{{ $user_id }}", allow_none=True)
 
     def configure(self, context):
         super().configure(context)
 
     def process_signals(self, signals):
-        response = self._request('post', body={
-            "name": self.tag_name(),
-            "users": [{"id": self.user_id()}, {"email": self.email()}],
-        })
-        if response.status_code != 200:
-            raise Exception
+        for signal in signals:
+            response = self._request('post', body={
+                "name": self.tag_name(signal),
+                "users": [
+                    {"id": self.user_id(signal)},
+                    {"email": self.email(signal)}
+                ] if self.user_id(signal) else [{"email": self.email(signal)}],
+            })
+            if response.status_code != 200:
+                raise Exception
 
     def _request(self, method='post', id=None, body=None):
         url = 'https://api.intercom.io/tags'
