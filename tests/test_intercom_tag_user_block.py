@@ -12,7 +12,6 @@ class TestIntercomTagUsers(NIOBlockTestCase):
         blk = IntercomTagUsers()
         self.configure_block(blk, {
             "access_token": "testToken",
-            "email": "{{ $email }}",
             "tag_name": "{{ $tag }}"
         })
         blk.start()
@@ -25,7 +24,7 @@ class TestIntercomTagUsers(NIOBlockTestCase):
             }
         )
         blk.process_signals([Signal({
-            "email": "test@email.com",
+            "user": "test@email.com",
             "tag": "testTag"
         })])
         blk.stop()
