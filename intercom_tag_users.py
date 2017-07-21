@@ -5,7 +5,7 @@ from nio.properties import IntProperty, StringProperty, ObjectProperty, \
 import requests
 
 
-class IntercomNewMessages(Block):
+class IntercomTagUsers(Block):
 
     # Need: tag name, user email/id
     access_token = StringProperty(
