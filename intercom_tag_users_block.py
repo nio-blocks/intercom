@@ -1,7 +1,5 @@
 from nio.block.base import Block
-from nio.signal.base import Signal
-from nio.properties import IntProperty, StringProperty, ObjectProperty, \
-    PropertyHolder
+from nio.properties import StringProperty
 import requests
 
 
@@ -9,27 +7,19 @@ class IntercomTagUsers(Block):
 
     access_token = StringProperty(
         title="Access Token", default="[[INTERCOM_ACCESS_TOKEN]]")
-    tag_name = StringProperty(title="Name of Tag", default="CrankyCustomer")
+    tag_name = StringProperty(title="Name of Tag", default="HappyCustomer")
     email = StringProperty(title="User Email", default="{{ $user }}")
-    user_id = StringProperty(
-        title="User ID", default="{{ $user_id }}", allow_none=True)
-
-    def configure(self, context):
-        super().configure(context)
 
     def process_signals(self, signals):
         for signal in signals:
-            response = self._request('post', body={
+            response = self._request(body={
                 "name": self.tag_name(signal),
-                "users": [
-                    {"id": self.user_id(signal)},
-                    {"email": self.email(signal)}
-                ] if self.user_id(signal) else [{"email": self.email(signal)}],
+                "users": [{"email": self.email(signal)}],
             })
             if response.status_code != 200:
                 raise Exception
 
-    def _request(self, method='post', id=None, body=None):
+    def _request(self, body={}):
         url = 'https://api.intercom.io/tags'
         kwargs = {}
         kwargs['headers'] = {
@@ -38,7 +28,7 @@ class IntercomTagUsers(Block):
             "Content-Type": "application/json",
         }
         kwargs['json'] = body
-        response = getattr(requests, method)(url, **kwargs)
+        response = getattr(requests, 'post')(url, **kwargs)
         if response.status_code != 200:
             self.logger.error("Http request failed: {} {}".format(
                 response, response.json()))

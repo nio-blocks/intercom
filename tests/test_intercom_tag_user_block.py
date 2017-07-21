@@ -26,7 +26,6 @@ class TestIntercomTagUsers(NIOBlockTestCase):
         )
         blk.process_signals([Signal({
             "email": "test@email.com",
-            "user_id": None,
             "tag": "testTag"
         })])
         blk.stop()
