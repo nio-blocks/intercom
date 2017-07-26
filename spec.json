@@ -19,4 +19,24 @@
       }
     }
   }
+  "nio/IntercomTagUsers": {
+    "Version": "0.1.0",
+    "Description": "Sends HTTP request to Intercom to apply a tag to a user.",
+    "Output": "None",
+    "Input": "Signal containing user info",
+    "Dependencies": [
+      "requests"
+    ],
+    "Properties": {
+      "tag_name": {
+        "description": "The name of the tag that will be applied to the user."
+      },
+      "access_token": {
+        "description": "Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom."
+      },
+      "user_info": {
+       "description": "Email address or user_id of the Intercom user to be tagged."
+      }
+    }
+  }
 }
