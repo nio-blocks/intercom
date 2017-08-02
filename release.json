@@ -1,12 +1,12 @@
 {
   "nio/IntercomNewMessages": {
-    "Language": "python",
-    "Reference": "github.com/nio-blocks/intercom@v0.1.0",
-    "Version": "0.1.0"
+    "language": "Python",
+    "version": "0.0.1",
+    "reference": "github.com/nio-blocks/intercom@v0.0.1"
   },
   "nio/IntercomTagUsers": {
-    "Language": "python",
-    "Reference": "github.com/nio-blocks/intercom@v0.1.0",
-    "Version": "0.1.0"
+    "language": "Python",
+    "version": "0.0.1",
+    "reference": "github.com/nio-blocks/intercom@v0.0.1"
   }
 }
