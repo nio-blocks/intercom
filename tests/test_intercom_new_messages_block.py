@@ -1,10 +1,8 @@
 import json
-from unittest.mock import MagicMock, patch, ANY
+from unittest.mock import MagicMock, patch
 
 import responses
 
-from nio.block.terminals import DEFAULT_TERMINAL
-from nio.signal.base import Signal
 from nio.testing.block_test_case import NIOBlockTestCase
 from ..intercom_new_messages_block import IntercomNewMessages, BuildSignal
 
