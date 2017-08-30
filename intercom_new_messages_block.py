@@ -1,7 +1,7 @@
-from nio.block.base import Block
+from nio import GeneratorBlock
 from nio.signal.base import Signal
 from nio.properties import IntProperty, StringProperty, ObjectProperty, \
-    PropertyHolder
+    PropertyHolder, VersionProperty
 from nio.modules.web import RESTHandler, WebEngine
 import requests
 
@@ -32,8 +32,9 @@ class WebServer(PropertyHolder):
     endpoint = StringProperty(title='Endpoint', default='')
 
 
-class IntercomNewMessages(Block):
+class IntercomNewMessages(GeneratorBlock):
 
+    version = VersionProperty("1.0.0")
     web_server = ObjectProperty(
         WebServer, title='Web Server', default=WebServer())
     callback_url = StringProperty(

@@ -1,7 +1,9 @@
-from nio.testing.block_test_case import NIOBlockTestCase
-from nio.signal.base import Signal
 import json
+
 import responses
+
+from nio.signal.base import Signal
+from nio.testing.block_test_case import NIOBlockTestCase
 from ..intercom_tag_users_block import IntercomTagUsers
 
 
@@ -38,7 +40,8 @@ class TestIntercomTagUsers(NIOBlockTestCase):
             json.loads(responses.calls[0].request.body.decode()), {
                 "name": "testTag",
                 "users": [{"email": "test@email.com"}],
-        })
+            }
+        )
 
     def _assert_header_value(self, headers, header, value):
         self.assertEqual(headers[header], value)

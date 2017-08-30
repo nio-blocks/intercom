@@ -1,21 +1,27 @@
 IntercomNewMessages
 ===================
-
 Publishes a signal for each new conversation created in Intercom. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It also creates a webhook in Intercom that is configured to send to your callback url. When the block stops, it delete the webhook from Intercom.
 
 Properties
 ----------
-- **callback_url**(string): Your publicly accessible url that Intercom can POST notifications to.
-- **access_token**(string): Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom.
-- **web_server**(object): Host, Port and Endpoint to launch your webserver where Intercom will POST notifications to.
+- **access_token**: Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom.
+- **callback_url**: Your publicly accessible url that Intercom can POST notifications to.
+- **web_server**: Host, Port and Endpoint to launch your webserver where Intercom will POST notifications to.
 
-Dependencies
-------------
-requests
-
-Output
+Inputs
 ------
+None
 
+Outputs
+-------
+- **default**: A signal for each new conversation started in Intercom.
+
+Commands
+--------
+None
+
+Sample Output Signal
+--------------------
 ```
 {'app_id': 'mz6gs2p0',
  'created_at': 1499900215,
@@ -57,3 +63,26 @@ Output
  'topic': 'conversation.user.created',
  'type': 'notification_event'}
 ```
+
+IntercomTagUsers
+================
+Tags users in Intercom to be searched and sorted by.
+
+Properties
+----------
+- **access_token**: Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom.
+- **tag_name**: Tag.
+- **user_info**: User to tag, specified by email or Intercom user id.
+
+Inputs
+------
+- **default**: Signal with user tagging information.
+
+Outputs
+-------
+None
+
+Commands
+--------
+None
+

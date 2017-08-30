@@ -1,18 +1,71 @@
 {
   "nio/IntercomNewMessages": {
-    "version": "0.0.1",
-    "description": "",
+    "version": "1.0.0",
+    "description": "Publishes a signal for each new conversation created in Intercom. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It also creates a webhook in Intercom that is configured to send to your callback url. When the block stops, it delete the webhook from Intercom.",
+    "properties": {
+      "access_token": {
+        "title": "Access Token",
+        "type": "StringType",
+        "description": "Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom.",
+        "default": "[[INTERCOM_ACCESS_TOKEN]]"
+      },
+      "callback_url": {
+        "title": "Callback URL",
+        "type": "StringType",
+        "description": "Your publicly accessible url that Intercom can POST notifications to.",
+        "default": "https://example.org/hooks/1"
+      },
+      "web_server": {
+        "title": "Web Server",
+        "type": "ObjectType",
+        "description": "Host, Port and Endpoint to launch your webserver where Intercom will POST notifications to.",
+        "default": {
+          "host": "0.0.0.0",
+          "endpoint": "",
+          "port": 8182
+        }
+      }
+    },
     "inputs": {},
-    "outputs": {},
-    "properties": {},
+    "outputs": {
+      "default": {
+        "description": "A signal for each new conversation started in Intercom."
+      }
+    },
     "commands": {}
   },
   "nio/IntercomTagUsers": {
-    "version": "0.0.1",
-    "description": "",
-    "inputs": {},
+    "version": "1.0.0",
+    "description": "Tags users in Intercom to be searched and sorted by.",
+    "properties": {
+      "access_token": {
+        "title": "Access Token",
+        "type": "StringType",
+        "description": "Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom.",
+        "default": "[[INTERCOM_ACCESS_TOKEN]]"
+      },
+      "tag_name": {
+        "title": "Name of Tag",
+        "type": "StringType",
+        "description": "Tag.",
+        "default": "HappyCustomer"
+      },
+      "user_info": {
+        "title": "User Info",
+        "type": "ObjectType",
+        "description": "User to tag, specified by email or Intercom user id.",
+        "default": {
+          "email": "{{ $user }}",
+          "id": "{{ $user_id }}"
+        }
+      }
+    },
+    "inputs": {
+      "default": {
+        "description": "Signal with user tagging information."
+      }
+    },
     "outputs": {},
-    "properties": {},
     "commands": {}
   }
 }
