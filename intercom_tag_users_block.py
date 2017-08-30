@@ -1,5 +1,6 @@
-from nio.block.base import Block
-from nio.properties import StringProperty, PropertyHolder, ObjectProperty
+from nio import TerminatorBlock
+from nio.properties import StringProperty, PropertyHolder, ObjectProperty, \
+    VersionProperty
 import requests
 
 
@@ -10,8 +11,9 @@ class UserInfo(PropertyHolder):
         title="ID", default="{{ $user_id }}", allow_none=True)
 
 
-class IntercomTagUsers(Block):
+class IntercomTagUsers(TerminatorBlock):
 
+    version = VersionProperty("1.0.0")
     access_token = StringProperty(
         title="Access Token", default="[[INTERCOM_ACCESS_TOKEN]]")
     tag_name = StringProperty(title="Name of Tag", default="HappyCustomer")

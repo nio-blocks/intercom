@@ -1,9 +1,9 @@
-from unittest.mock import MagicMock, patch, ANY
-from nio.block.terminals import DEFAULT_TERMINAL
-from nio.testing.block_test_case import NIOBlockTestCase
-from nio.signal.base import Signal
 import json
+from unittest.mock import MagicMock, patch
+
 import responses
+
+from nio.testing.block_test_case import NIOBlockTestCase
 from ..intercom_new_messages_block import IntercomNewMessages, BuildSignal
 
 
@@ -20,6 +20,7 @@ class TestBuildSignal(NIOBlockTestCase):
         self.assertDictEqual(
             notify_signals.call_args[0][0][0].to_dict(),
             {"I'm a": "dictionary"})
+
 
 class TestIntercomNewMessages(NIOBlockTestCase):
 
@@ -57,7 +58,7 @@ class TestIntercomNewMessages(NIOBlockTestCase):
         responses.add(
             responses.DELETE,
             'https://api.intercom.io/subscriptions/id',
-            json={"id":"id"},
+            json={"id": "id"},
         )
         module = IntercomNewMessages.__module__
         with patch("{}.WebEngine".format(module)):
@@ -71,7 +72,8 @@ class TestIntercomNewMessages(NIOBlockTestCase):
                 "service_type": "web",
                 "topics": ["conversation.user.created"],
                 "url": blk.callback_url(),
-        })
+            }
+        )
         headers = responses.calls[0].request.headers
         self._assert_header_value(
             headers, "Authorization", "Bearer {}".format(blk.access_token()))
