@@ -1,22 +1,74 @@
 {
-  "nio/IntercomNewMessages": {
+  "nio/IntercomEventSubscriptions": {
     "version": "1.0.0",
-    "description": "Publishes a signal for each new conversation created in Intercom. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It also creates a webhook in Intercom that is configured to send to your callback url. When the block stops, it delete the webhook from Intercom.",
-    "categories": [
-      "Communication"
-    ],
+    "description": "Publishes a signal for each new event in configured topics. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It can also create a webhook in Intercom that is configured to send to your callback url. When the block stops, it deletes the webhook from Intercom.",
     "properties": {
       "access_token": {
         "title": "Access Token",
         "type": "StringType",
-        "description": "Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom.",
+        "description": "Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom. Not required if remote webhhok is not manged by the block.",
         "default": "[[INTERCOM_ACCESS_TOKEN]]"
       },
       "callback_url": {
         "title": "Callback URL",
         "type": "StringType",
-        "description": "Your publicly accessible url that Intercom can POST notifications to.",
+        "description": "Your publicly accessible url that Intercom can POST notifications to. Not required if remote webhhok is not manged by the block.",
+        "default": ""
+      },
+      "manage_webhook": {
+        "title": "Manage Webhook?",
+        "type": "BoolType",
+        "description": "Create and Destroy remote webhooks automatically, requires extended scope token.",
+        "default": true
+      },
+      "topics": {
+        "title": "Topic Subscriptions",
+        "type": "ListType",
+        "description": "Topic subscriptions to create, if webhook is managed by block (available topics: https://developers.intercom.com/reference#topics)",
+        "default": [
+          "conversation.user.created"
+        ]
+      },
+      "web_server": {
+        "title": "Web Server",
+        "type": "ObjectType",
+        "description": "",
+        "default": {
+          "host": "0.0.0.0",
+          "endpoint": "Host, Port and Endpoint to launch your webserver where Intercom will POST notifications to.",
+          "port": 8182
+        }
+      }
+    },
+    "inputs": {},
+    "outputs": {
+      "default": {
+        "description": ""
+      }
+    },
+    "commands": {}
+  },
+  "nio/IntercomNewMessages": {
+    "version": "1.0.0",
+    "description": "Publishes a signal for each new conversation created in Intercom. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It can also create a webhook in Intercom that is configured to send to your callback url. When the block stops, it deletes the webhook from Intercom.",
+    "properties": {
+      "access_token": {
+        "title": "Access Token",
+        "type": "StringType",
+        "description": "Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom. Not required if remote webhhok is not manged by the block.",
+        "default": "[[INTERCOM_ACCESS_TOKEN]]"
+      },
+      "callback_url": {
+        "title": "Callback URL",
+        "type": "StringType",
+        "description": "Your publicly accessible url that Intercom can POST notifications to. Not required if remote webhhok is not manged by the block.",
         "default": "https://example.org/hooks/1"
+      },
+      "manage_webhook": {
+        "title": "Manage Webhook?",
+        "type": "BoolType",
+        "description": "Create and Destroy remote webhooks automatically, requires extended scope token.",
+        "default": true
       },
       "web_server": {
         "title": "Web Server",
@@ -40,9 +92,6 @@
   "nio/IntercomTagUsers": {
     "version": "1.0.0",
     "description": "Tags users in Intercom to be searched and sorted by.",
-    "categories": [
-      "Communication"
-    ],
     "properties": {
       "access_token": {
         "title": "Access Token",
