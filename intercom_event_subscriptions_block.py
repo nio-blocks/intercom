@@ -1,7 +1,7 @@
 from nio import GeneratorBlock
 from nio.signal.base import Signal
 from nio.properties import IntProperty, StringProperty, ObjectProperty, \
-    PropertyHolder, VersionProperty, BoolProperty, ListProperty
+    PropertyHolder, VersionProperty, ListProperty
 from nio.types import StringType
 from nio.modules.web import RESTHandler, WebEngine
 import requests
