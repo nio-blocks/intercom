@@ -39,13 +39,9 @@ class IntercomEventSubscriptions(GeneratorBlock):
     web_server = ObjectProperty(
         WebServer, title='Web Server', default=WebServer())
     callback_url = StringProperty(
-        title="Callback URL",
-        default="",
-        allow_none=True)
+        title="Callback URL", default="")
     access_token = StringProperty(
-        title="Access Token",
-        default="[[INTERCOM_ACCESS_TOKEN]]",
-        allow_none=True)
+        title="Access Token", default="[[INTERCOM_ACCESS_TOKEN]]")
     topics = ListProperty(
         StringType,
         title='Topic Subscriptions',

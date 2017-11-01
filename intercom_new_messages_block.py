@@ -38,13 +38,9 @@ class IntercomNewMessages(GeneratorBlock):
     web_server = ObjectProperty(
         WebServer, title='Web Server', default=WebServer())
     callback_url = StringProperty(
-        title="Callback URL",
-        default="",
-        allow_none=True)
+        title="Callback URL", default="https://example.org/hooks/1")
     access_token = StringProperty(
-        title="Access Token",
-        default="[[INTERCOM_ACCESS_TOKEN]]",
-        allow_none=True)
+        title="Access Token", default="[[INTERCOM_ACCESS_TOKEN]]")
 
     def __init__(self):
         super().__init__()
