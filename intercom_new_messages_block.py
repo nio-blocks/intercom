@@ -45,7 +45,6 @@ class IntercomNewMessages(GeneratorBlock):
         title="Access Token",
         default="[[INTERCOM_ACCESS_TOKEN]]",
         allow_none=True)
-    manage_webhook = BoolProperty(title='Manage Webhook?', default=True)
 
     def __init__(self):
         super().__init__()
