@@ -82,25 +82,5 @@ class TestIntercomNewMessages(NIOBlockTestCase):
         blk.stop()
         self.assertEqual(len(responses.calls), 2)
 
-    @responses.activate
-    def test_unmanaged_webhook(self):
-        blk = IntercomNewMessages()
-        module = IntercomNewMessages.__module__
-        with patch("{}.WebEngine".format(module)) as engine:
-            with patch("{}.BuildSignal".format(module)) as handler:
-                self.configure_block(blk, {
-                    "manage_webhook": False,
-                })
-                engine.add_server.assert_called_once_with(
-                    blk.web_server().port(),
-                    blk.web_server().host(),
-                )
-                handler.assert_called_once_with(
-                    blk.web_server().endpoint(),
-                    blk.notify_signals,
-                    blk.logger,
-                )
-        self.assertEqual(len(responses.calls), 0)
-
     def _assert_header_value(self, headers, header, value):
         self.assertEqual(headers[header], value)

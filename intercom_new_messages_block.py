@@ -1,7 +1,7 @@
 from nio import GeneratorBlock
 from nio.signal.base import Signal
 from nio.properties import IntProperty, StringProperty, ObjectProperty, \
-    PropertyHolder, VersionProperty, BoolProperty
+    PropertyHolder, VersionProperty
 from nio.modules.web import RESTHandler, WebEngine
 import requests
 
@@ -55,23 +55,21 @@ class IntercomNewMessages(GeneratorBlock):
     def configure(self, context):
         super().configure(context)
         self._create_web_server()
-        if self.manage_webhook():
-            response = self._request('post', body={
-                "service_type": "web",
-                "topics": ["conversation.user.created"],
-                "url": self.callback_url(),
-            })
-            if response.status_code != 200:
-                raise Exception
-            self._subscription_id = response.json()["id"]
+        response = self._request('post', body={
+            "service_type": "web",
+            "topics": ["conversation.user.created"],
+            "url": self.callback_url(),
+        })
+        if response.status_code != 200:
+            raise Exception
+        self._subscription_id = response.json()["id"]
 
     def start(self):
         super().start()
         self._server.start()
 
     def stop(self):
-        if self.manage_webhook():
-            self._request('delete', id=self._subscription_id)
+        self._request('delete', id=self._subscription_id)
         self._server.stop()
         super().stop()
 
