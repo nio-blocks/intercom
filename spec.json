@@ -28,9 +28,9 @@
         "type": "ObjectType",
         "description": "Host, Port and Endpoint to launch your webserver where Intercom will POST notifications to.",
         "default": {
+          "host": "0.0.0.0",
           "endpoint": "",
-          "port": 8182,
-          "host": "0.0.0.0"
+          "port": 8182
         }
       }
     },
@@ -56,16 +56,16 @@
         "title": "Callback URL",
         "type": "StringType",
         "description": "Your publicly accessible url that Intercom can POST notifications to.",
-        "default": ""
+        "default": "https://example.org/hooks/1"
       },
       "web_server": {
         "title": "Web Server",
         "type": "ObjectType",
         "description": "Host, Port and Endpoint to launch your webserver where Intercom will POST notifications to.",
         "default": {
+          "host": "0.0.0.0",
           "endpoint": "",
-          "port": 8182,
-          "host": "0.0.0.0"
+          "port": 8182
         }
       }
     },
@@ -98,8 +98,8 @@
         "type": "ObjectType",
         "description": "User to tag, specified by email or Intercom user id.",
         "default": {
-          "email": "{{ $user }}",
-          "id": "{{ $user_id }}"
+          "id": "{{ $user_id }}",
+          "email": "{{ $user }}"
         }
       }
     },
