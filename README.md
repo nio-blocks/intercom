@@ -1,36 +1,11 @@
-IntercomEventSubscriptions
-==========================
-Publishes a signal for each new event in configured topics. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It can also create a webhook in Intercom that is configured to send to your callback url. When the block stops, it deletes the webhook from Intercom.
-
-Properties
-----------
-- **access_token**: Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom. Not required if remote webhhok is not manged by the block.
-- **callback_url**: Your publicly accessible url that Intercom can POST notifications to. Not required if remote webhhok is not manged by the block.
-- **manage_webhook**: Create and Destroy remote webhooks automatically, requires extended scope token.
-- **topics**: Topic subscriptions to create, if webhook is managed by block (available topics: https://developers.intercom.com/reference#topics)
-- **web_server**: 
-
-Inputs
-------
-None
-
-Outputs
--------
-- **default**: 
-
-Commands
---------
-None
-
 IntercomNewMessages
 ===================
-Publishes a signal for each new conversation created in Intercom. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It can also create a webhook in Intercom that is configured to send to your callback url. When the block stops, it deletes the webhook from Intercom.
+Publishes a signal for each new conversation created in Intercom. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It also creates a webhook in Intercom that is configured to send to your callback url. When the block stops, it delete the webhook from Intercom.
 
 Properties
 ----------
-- **access_token**: Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom. Not required if remote webhhok is not manged by the block.
-- **callback_url**: Your publicly accessible url that Intercom can POST notifications to. Not required if remote webhhok is not manged by the block.
-- **manage_webhook**: Create and Destroy remote webhooks automatically, requires extended scope token.
+- **access_token**: Your Intercom Access Token. You will need to request an [extended scope](https://developers.intercom.com/docs/personal-access-tokens#section-extended-scopes) token from Intercom.
+- **callback_url**: Your publicly accessible url that Intercom can POST notifications to.
 - **web_server**: Host, Port and Endpoint to launch your webserver where Intercom will POST notifications to.
 
 Inputs
