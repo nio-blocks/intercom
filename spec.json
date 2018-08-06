@@ -50,7 +50,7 @@
     "description": "Publishes a signal for each new conversation created in Intercom. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It also creates a webhook in Intercom that is configured to send to your callback url. When the block stops, it delete the webhook from Intercom.",
     "categories": [
       "Communication"
-    ,
+    ],
     "properties": {
       "access_token": {
         "title": "Access Token",
