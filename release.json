@@ -1,4 +1,9 @@
 {
+  "nio/IntercomEventSubscriptions": {
+    "language": "Python",
+    "url": "git://github.com/nio-blocks/intercom.git",
+    "version": "1.0.0"
+  },
   "nio/IntercomNewMessages": {
     "language": "Python",
     "url": "git://github.com/nio-blocks/intercom.git",
