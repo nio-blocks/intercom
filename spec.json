@@ -2,6 +2,9 @@
   "nio/IntercomEventSubscriptions": {
     "version": "1.0.0",
     "description": "",
+    "categories": [
+      "Communication"
+    ],
     "properties": {
       "access_token": {
         "title": "Access Token",
@@ -29,8 +32,8 @@
         "description": "Host, Port and Endpoint to launch your webserver where Intercom will POST notifications to.",
         "default": {
           "host": "0.0.0.0",
-          "endpoint": "",
-          "port": 8182
+          "port": 8182,
+          "endpoint": ""
         }
       }
     },
@@ -45,6 +48,9 @@
   "nio/IntercomNewMessages": {
     "version": "1.0.0",
     "description": "Publishes a signal for each new conversation created in Intercom. When the block starts up, it creates a local web server and endpoint to receive the messages from nio. It also creates a webhook in Intercom that is configured to send to your callback url. When the block stops, it delete the webhook from Intercom.",
+    "categories": [
+      "Communication"
+    ],
     "properties": {
       "access_token": {
         "title": "Access Token",
@@ -64,8 +70,8 @@
         "description": "Host, Port and Endpoint to launch your webserver where Intercom will POST notifications to.",
         "default": {
           "host": "0.0.0.0",
-          "endpoint": "",
-          "port": 8182
+          "port": 8182,
+          "endpoint": ""
         }
       }
     },
@@ -80,6 +86,9 @@
   "nio/IntercomTagUsers": {
     "version": "1.0.0",
     "description": "Tags users in Intercom to be searched and sorted by.",
+    "categories": [
+      "Communication"
+    ],
     "properties": {
       "access_token": {
         "title": "Access Token",
@@ -98,8 +107,8 @@
         "type": "ObjectType",
         "description": "User to tag, specified by email or Intercom user id.",
         "default": {
-          "id": "{{ $user_id }}",
-          "email": "{{ $user }}"
+          "email": "{{ $user }}",
+          "id": "{{ $user_id }}"
         }
       }
     },
